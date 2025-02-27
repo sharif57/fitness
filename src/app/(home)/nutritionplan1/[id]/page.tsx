@@ -128,6 +128,7 @@ const MealPlans: React.FC = () => {
       <div>
         <NutritionPlanDetails></NutritionPlanDetails>
       </div>
+      
       <div className="container mx-auto lg:p-6 p-2 bg-white">
         <div className="flex flex-col md:flex-row gap-6">
           <div className="md:w-2/3">
@@ -223,7 +224,7 @@ const MealPlans: React.FC = () => {
                   >
                     {/* Right Side Divider (Border) */}
                     {index !== 4 && (
-                      <div className="absolute right-[-50px] top-1/2 transform -translate-y-1/2 h-24 border-r-2 border-gray-400"></div>
+                      <div className="absolute right-[-50px] top-1/2 transform -translate-y-1/2 lg:h-24 border-r-2 border-gray-400"></div>
                     )}
                     <Progress
                       type="circle"
@@ -303,41 +304,7 @@ const MealPlans: React.FC = () => {
         </div>
       </div>
 
-      {/* Chat with Nutritionist Modal */}
-      {/* <div className="rounded-3xl">
-        <Modal
-          title="Chat with Nutritionist"
-          centered
-          open={openModal}
-          onCancel={() => setOpenModal(false)}
-          footer={null}
-        >
-          <div className="flex flex-col gap-4 h-[400px] overflow-y-auto">
-            <div className="flex gap-2">
-              <div className="bg-blue-100 p-3 rounded-lg max-w-[80%]">
-                <p>
-                  Hello! How can I help you with your nutrition plan today?{" "}
-                </p>
-              </div>
-            </div>
-            <div className="flex gap-2 justify-end">
-              <div className="bg-gray-100 p-3 rounded-lg max-w-[80%]">
-                <p>I have some questions about {nutrition?.title}.</p>
-              </div>
-            </div>
-          </div>
-          <div className="mt-4 flex gap-2">
-            <input
-              type="text"
-              placeholder="Type your message..."
-              className="flex-1 p-2 border rounded-lg"
-            />
-            <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
-              Send
-            </button>
-          </div>
-        </Modal>
-      </div> */}
+      
 
       <div className="bg-[#EFEFEF]">
         <Modal
@@ -367,45 +334,7 @@ const MealPlans: React.FC = () => {
               </div>
             ))}
           </div>
-          {/* <div className="mt-4 flex gap-2">
-            <input
-              type="text"
-              placeholder="Type your message..."
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              className="flex-1 p-2 border rounded-lg"
-            />
-            <button
-              onClick={handleSendMessage}
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-            >
-              Send
-            </button>
-          </div> */}
-
-          {/* <div className="border-t pt-4">
-            <div className="flex items-center gap-2">
-              <Input
-                placeholder="Let's chat"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onPressEnter={handleSendMessage}
-                className="flex-1"
-              />
-              <Button
-                icon={<ExpandAltOutlined />}
-                className="hover:bg-gray-100"
-              />
-              <Button
-                // type="primary"
-                color="default"
-                variant="solid"
-                icon={<ArrowUpOutlined />}
-                onClick={handleSendMessage}
-                className="bg-black"
-              />
-            </div>
-          </div> */}
+      
 
           <div className="relative w-full ">
             <input
@@ -450,137 +379,3 @@ const MealPlans: React.FC = () => {
 
 export default MealPlans;
 
-// /* eslint-disable @next/next/no-img-element */
-
-// "use client";
-
-// import { Sparkles, Star } from "lucide-react";
-// import React, { useState, useEffect } from "react";
-// import { Checkbox, Progress, Modal, Flex } from "antd";
-// import type { CheckboxProps } from "antd";
-// import Appointment from "@/components/Appointment";
-// import { IoMdShareAlt } from "react-icons/io";
-// import { useParams } from "next/navigation";
-// import { useNutritionDetailsQuery } from "@/redux/features/nutritionSlice";
-// import NutritionPlanDetails from "@/pages/NutritionPlan/NutritionPlanDetails";
-// import Link from "next/link";
-// import Loading from "@/components/Loading";
-
-// const onChange: CheckboxProps["onChange"] = (e) => {
-//   console.log(`checked = ${e.target.checked}`);
-// };
-
-// const MealPlans: React.FC = () => {
-//   const params = useParams();
-//   const id = params?.id as string;
-//   const API_BASE_URL = process.env.NEXT_PUBLIC_API_KEY;
-// const GPT_KEY = process.env.NEXT_PUBLIC_API_KEY_GPT_KEY;
-// console.log(GPT_KEY)
-
-//   const { data, isLoading, error } = useNutritionDetailsQuery(id);
-//   const nutrition = data?.data?.nutrition;
-
-//   const [openModal, setOpenModal] = useState(false);
-// const [messages, setMessages] = useState([
-//   { role: "assistant", content: "Hello! How can I help you with your nutrition plan today?" },
-// ]);
-// const [input, setInput] = useState("");
-
-//   useEffect(() => {
-//     console.log("Nutrition Data:", nutrition);
-//   }, [nutrition]);
-
-// const fetchGPTResponse = async (message) => {
-//   try {
-//     const response = await fetch("https://api.openai.com/v1/chat/completions", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${GPT_KEY}`,
-//       },
-//       body: JSON.stringify({
-//         model: "gpt-3.5-turbo",
-//         messages: [
-//           { role: "system", content: `You are a nutritionist. Answer queries related to ${nutrition?.title}.` },
-//           { role: "user", content: message },
-//         ],
-//       }),
-//     });
-
-//     if (!response.ok) {
-//       throw new Error(`API Error: ${response.status} ${response.statusText}`);
-//     }
-
-//     const data = await response.json();
-//     if (!data.choices || data.choices.length === 0) {
-//       throw new Error("Invalid GPT response format.");
-//     }
-
-//     return data.choices[0].message.content;
-//   } catch (error) {
-//     console.error("Error fetching GPT response:", error);
-//     return "Sorry, I couldn't process your request at the moment.";
-//   }
-// };
-
-// console.log("GPT API Key:", GPT_KEY);
-
-// const handleSendMessage = async () => {
-//   if (!input.trim()) return;
-//   const userMessage = { role: "user", content: input };
-//   setMessages([...messages, userMessage]);
-//   setInput("");
-
-//   const gptResponse = await fetchGPTResponse(input);
-//   setMessages([...messages, userMessage, { role: "assistant", content: gptResponse }]);
-// };
-
-//   if (isLoading) return <Loading />;
-//   if (error) return <p className="text-center text-red-500">Failed to load nutrition details.</p>;
-
-//   return (
-//     <div>
-//       <NutritionPlanDetails />
-//       <div className="container mx-auto lg:p-6 p-2 bg-white">
-//         <div className="flex flex-col md:flex-row gap-6">
-//           <div className="md:w-2/3">
-//             <h1 className="text-[40px] font-semibold">{nutrition?.title}</h1>
-//             <p className="text-gray-500 text-[20px] flex items-center gap-2">
-//               <Star size={24} color="#FB953B" />
-//               {nutrition?.rating} ({nutrition?.reviewsCount} reviews)
-//             </p>
-//             <button className="bg-blue-500 text-white p-2 rounded-md" onClick={() => setOpenModal(true)}>
-//               Chat with Nutritionist
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* Chat Modal */}
-//       <Modal title="Chat with Nutritionist" centered open={openModal} onCancel={() => setOpenModal(false)} footer={null}>
-//         <div className="flex flex-col gap-4 h-[400px] overflow-y-auto p-3">
-//           {messages.map((msg, index) => (
-//             <div key={index} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-//               <div className={`${msg.role === "user" ? "bg-gray-200" : "bg-blue-100"} p-3 rounded-lg max-w-[80%]`}>{msg.content}</div>
-//             </div>
-//           ))}
-//         </div>
-//         <div className="mt-4 flex gap-2">
-//           <input
-//             type="text"
-//             placeholder="Type your message..."
-//             value={input}
-//             onChange={(e) => setInput(e.target.value)}
-//             className="flex-1 p-2 border rounded-lg"
-//           />
-//           <button onClick={handleSendMessage} className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
-//             Send
-//           </button>
-//         </div>
-//       </Modal>
-//       <Appointment />
-//     </div>
-//   );
-// };
-
-// export default MealPlans;

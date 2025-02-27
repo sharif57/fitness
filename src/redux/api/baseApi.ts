@@ -5,7 +5,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseApi = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://115.127.156.132:3005/api/v1" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://45.55.209.88:3006/api/v1" }),
    tagTypes: [
     "AddPlan",
     "Package",
