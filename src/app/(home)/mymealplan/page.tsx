@@ -42,7 +42,7 @@ const MealPlanSummary = () => {
   }
 
   return (
-    <div className="container mx-auto px-6 py-8 h-screen">
+    <div className="container mx-auto px-6 py-8 max-h-max min-h-screen">
       <h2 className="text-3xl font-bold text-center text-[#01336F] mb-6">Meal Plan Summary</h2>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
