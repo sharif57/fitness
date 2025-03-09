@@ -195,7 +195,7 @@ const extractDaysFromInput = (input: any) => {
           }}
           placeholder={
             hasWorkoutSubscription || hasBothSubscription
-              ? "Enter maximum 7 days workout plan"
+              ? "create your own meal plan"
               : "Subscription required"
           }
           className="bg-transparent w-full  text-white placeholder-white/50 outline-none px-2 py-6"

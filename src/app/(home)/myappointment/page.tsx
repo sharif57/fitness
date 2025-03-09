@@ -35,7 +35,7 @@ export default function MyAppointment() {
   const appointments: Appointment[] = data?.data || [];
 
   return (
-    <div className="lg:p-6 p-3 container mx-auto h-screen">
+    <div className="lg:p-6 p-3 container mx-auto max-h-max min-h-screen">
       <h2 className="lg:text-[48px] text-[30px] font-semibold text-center mb-6">
         My Appointments
       </h2>
