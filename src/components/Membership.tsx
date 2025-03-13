@@ -114,7 +114,7 @@ const Membership: React.FC = () => {
                 >
                   {/* Plan Title & Price */}
                   <div>
-                    <h3 className="text-xl font-semibold text-center">
+                    <h3 className="text-xl font-semibold text-center capitalize">
                       {plan.title}
                     </h3>
                     <p className="text-[#01336F] text-center text-lg font-medium mt-1">
