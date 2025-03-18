@@ -6,10 +6,10 @@ import { useState, FormEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { CiMail } from "react-icons/ci";
 import { IoArrowBack } from "react-icons/io5";
 import { useForgotPasswordMutation } from "@/redux/features/authSlice";
 import { message } from "antd"; // Assuming you're using Ant Design for notifications
+import { Mail } from "lucide-react";
 
 // Define the type for the API response
 interface ForgotPasswordResponse {
@@ -90,7 +90,7 @@ export default function ForgotPassword() {
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Email Input */}
               <div className="flex items-center border border-[#345C8C] py-4 px-3 rounded-full bg-white">
-                <CiMail className="h-5 w-5 text-[#345C8C] font-bold" />
+                <Mail className="h-5 w-5 text-[#345C8C] font-bold" />
                 <input
                   className="w-full pl-5 outline-none border-none text-[#345C8C] placeholder:text-[#345C8C]"
                   type="email"

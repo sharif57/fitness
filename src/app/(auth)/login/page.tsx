@@ -4,13 +4,13 @@ import { useState } from "react"
 import Cookies from 'js-cookie'
 import Image from "next/image"
 import Link from "next/link"
-import { CiLock } from "react-icons/ci"
-import { FaRegUser, FaRegEye, FaRegEyeSlash } from "react-icons/fa"
+import {  FaRegEye, FaRegEyeSlash } from "react-icons/fa"
 import { useLoginMutation } from "@/redux/features/authSlice"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { useRouter } from "next/navigation"
 import { saveTokens } from "@/service/authService"
+import { LockKeyhole, Mail } from "lucide-react"
 
 interface UserCredentials {
   email: string
@@ -127,14 +127,14 @@ export default function Login() {
               />
             </div>
 
-            <h1 className="text-[#1B365D] text-2xl font-semibold text-center mb-6">Sign Up</h1>
+            <h1 className="text-[#1B365D] text-2xl font-semibold text-center mb-6">Log In</h1>
 
             <form onSubmit={handleSubmit} className="space-y-4">
              
 
               {/* Email Input */}
               <div className="flex items-center border border-[#345C8C] py-4 px-3 rounded-full bg-white">
-                <FaRegUser className="h-5 w-5 text-[#345C8C]" />
+                <Mail className="h-5 w-5 text-[#345C8C]" />
                 <input
                   className="w-full pl-5 outline-none border-none text-[#345C8C] placeholder:text-[#345C8C]"
                   type="email"
@@ -148,7 +148,7 @@ export default function Login() {
 
               {/* Password Input */}
               <div className="flex items-center border border-[#345C8C] py-4 px-3 rounded-full bg-white">
-                <CiLock className="h-5 w-5 text-[#345C8C] font-bold" />
+                <LockKeyhole  className="h-5 w-5 text-[#345C8C] font-bold" />
                 <input
                   className="w-full pl-5 outline-none border-none text-[#345C8C] placeholder:text-[#345C8C]"
                   type={showPassword ? "text" : "password"}
@@ -183,7 +183,7 @@ export default function Login() {
 
             {/* Login Link */}
             <p className="text-center mt-6 text-sm text-gray-600">
-              Already have an account?{" "}
+            Don't have an account?{" "}
               <Link href="/signup" className="text-[#345C8C] hover:underline font-medium">
                 Sign Up
               </Link>
