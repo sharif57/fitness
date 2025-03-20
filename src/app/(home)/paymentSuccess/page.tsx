@@ -6,7 +6,7 @@ import Link from "next/link"
 
 const SimplePaymentSuccess: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4 animate-">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4 ">
       <div className="max-w-md w-full bg-white shadow-lg rounded-lg overflow-hidden animate-fade-in-up">
         <div className="bg-green-500 text-white p-8 flex flex-col items-center justify-center">
           <CheckCircle size={64} className="mb-4 animate-bounce" />
@@ -20,7 +20,7 @@ const SimplePaymentSuccess: React.FC = () => {
             href="/"
             className="inline-block w-full bg-[#345C8C] text-white text-center py-3 px-6 rounded-lg hover:bg-[#345C8C] transition duration-300 ease-in-out transform hover:scale-105"
           >
-            Continue Shopping
+            Continue 
           </Link>
         </div>
       </div>
