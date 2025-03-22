@@ -102,6 +102,13 @@ color: white !important;
 .ant-input {
   padding-top: 12px !important;
   padding-bottom: 12px !important;
+  background: none !important;
+  color: white !important;
+}
+.ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
+  background: none !important;
+  color: white !important;
+  
 }
 
 /* .ant-modal-content {
