@@ -128,7 +128,7 @@ const Membership: React.FC = () => {
                     {plan.features.map((feature, index) => (
                       <li
                         key={index}
-                        className="flex items-start space-x-2 text-gray-600"
+                        className="flex items-start  space-x-2 text-gray-600"
                       >
                         <span className="text-[#01336F]">
                           <ShieldCheck />

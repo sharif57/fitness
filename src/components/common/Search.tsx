@@ -117,6 +117,12 @@ export default function Search() {
     }
   };
 
+  // Create a workout plan based on the searching query firstly check the query and match with exercise name and generate workout plan with valid exercise. If the goal does not specify a duration, use ${days} days.
+
+  //     make a workout plan based on the Goal. Check if any days type info given in goal (inputMessage) use that otherwise use 7 days.
+   
+
+
   // Function to create a workout plan message
   const createWorkoutPlanMessage = (): string => {
     if (!inputMessage || !user) return "User details are missing.";
@@ -124,14 +130,20 @@ export default function Search() {
 
     return `
       - Name: ${user.name}
-      - Email: ${user.email}
-      - Phone: ${user.phone}
+      - Gender: ${user.gender}
+      - Weight: ${user.weight}
       - Role: ${user.role}
+      - FitnessLevel: ${user.fitnessLevel}
+      - Injury: ${user.injury}
+      - Height : ${user.height}
+      - Age: ${user.age}
       - Goal: ${inputMessage}
 
-Create a workout plan based on the goal. If the goal does not specify a duration, use ${days} days.
+ Based on the user's query, generate a personalized workout plan by matching the requested workout with the available exercise data. Ensure that only valid exercises from the dataset are included.
 
-      make a workout plan based on the Goal. Check if any days type info given in goal (inputMessage) use that otherwise use 7 days.
+If the goal does not specify a duration, default to ${days} days.
+
+Check if the query includes any specific day information; if provided, use that. Otherwise, create a 7-day workout plan.
 
       This is available exercise data: ${JSON.stringify(
         exerciseData.data
@@ -211,28 +223,28 @@ const WorkoutPlanSchema = new Schema<IWorkoutPlan>({
           className="bg-transparent w-full  text-white placeholder-white/50 outline-none px-2 py-6"
         />
 
-<button
-  onClick={handleSendMessage}
-  className={`bg-[#01336F] text-white lg:px-10 px-4 lg:py-6 py-6 rounded-r-lg flex items-center justify-center ${
-    !hasWorkoutSubscription && !hasBothSubscription
-      ? "opacity-50 cursor-not-allowed"
-      : ""
-  }`}
-  disabled={
-    (!hasWorkoutSubscription && !hasBothSubscription) || loading
-  }
->
-  {loading ? (
-    <div className="loader-inner">
-      <div className="loader-block"></div>
-      <div className="loader-block"></div>
-      <div className="loader-block"></div>
-      <div className="loader-block"></div>
-    </div>
-  ) : (
-    <h1 className="text-[18px] font-normal text-[#FFFFFF]">Enter</h1>
-  )}
-</button>
+        <button
+          onClick={handleSendMessage}
+          className={`bg-[#01336F] text-white lg:px-10 px-4 lg:py-6 py-6 rounded-r-lg flex items-center justify-center ${
+            !hasWorkoutSubscription && !hasBothSubscription
+              ? "opacity-50 cursor-not-allowed"
+              : ""
+          }`}
+          disabled={
+            (!hasWorkoutSubscription && !hasBothSubscription) || loading
+          }
+        >
+          {loading ? (
+            <div className="loader-inner">
+              <div className="loader-block"></div>
+              <div className="loader-block"></div>
+              <div className="loader-block"></div>
+              <div className="loader-block"></div>
+            </div>
+          ) : (
+            <h1 className="text-[18px] font-normal text-[#FFFFFF]">Enter</h1>
+          )}
+        </button>
       </div>
     </div>
   );

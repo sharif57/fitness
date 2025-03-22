@@ -170,10 +170,10 @@ const Appointment: React.FC = () => {
                       ${consultation.price}
                     </p>
                   </div>
-                  <ul className="text-[#545454] space-y-5 mt-4">
+                  {/* <ul className="text-[#545454] space-y-5 mt-4">
                     {Array.isArray(consultation.description) ? (
                       consultation.description.map((item, index) => (
-                        <li className="flex items-center gap-2" key={index}>
+                        <li className="flex items-start gap-2" key={index}>
                           <CircleCheck
                             size={24}
                             color="#345C8C"
@@ -184,12 +184,39 @@ const Appointment: React.FC = () => {
                         </li>
                       ))
                     ) : (
+                      <li className="flex items-start gap-2">
+                        <CircleCheck
+                          size={24}
+                          color="#345C8C"
+                          strokeWidth={3}
+                          absoluteStrokeWidth
+                        />
+                        {consultation.description}
+                      </li>
+                    )}
+                  </ul> */}
+                  <ul className="text-[#545454] space-y-5 mt-4">
+                    {Array.isArray(consultation.description) ? (
+                      consultation.description.map((item, index) => (
+                        <li className="flex items-start gap-2" key={index}>
+                          <CircleCheck
+                            size={24} // Ensures consistent icon size
+                            color="#345C8C"
+                            strokeWidth={3}
+                            absoluteStrokeWidth
+                            className=" flex-shrink-0" 
+                          />
+                          <p>{item}</p>
+                        </li>
+                      ))
+                    ) : (
                       <li className="flex items-center gap-2">
                         <CircleCheck
                           size={24}
                           color="#345C8C"
                           strokeWidth={3}
                           absoluteStrokeWidth
+                          className="flex-shrink-0"
                         />
                         {consultation.description}
                       </li>
