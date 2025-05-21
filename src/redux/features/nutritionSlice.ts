@@ -18,6 +18,17 @@ export const nutritionApi = baseApi.injectEndpoints({
       providesTags: ["NutritionPlan"],
     }),
 
+    createNutrition: builder.mutation({
+      query: (data) => ({
+        url: "/meal/generate-meal-plan",
+        method: "POST",
+        body: data,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }),
+    }),
+
     nutritionDetails: builder.query({
         query: (_id) => ({
           url: `/nutrition/nutriton-details/${_id}`,
@@ -33,4 +44,4 @@ export const nutritionApi = baseApi.injectEndpoints({
   }),
 });
 
-export const {useAllNutritionQuery , useNutritionDetailsQuery} = nutritionApi;
+export const {useAllNutritionQuery , useNutritionDetailsQuery, useCreateNutritionMutation} = nutritionApi;
