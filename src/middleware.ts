@@ -32,5 +32,7 @@ export const config = {
     "/appointment/:page",
     "/profile",
     "/myappointment",
+    "/chat",
+    "/chat/:page",
   ],
 };
