@@ -302,8 +302,11 @@ export default function Home() {
 
   // Spinner component for loading
   const LoadingSpinner = () => (
-    <div className="flex justify-center items-center p-4">
-      <div className="w-8 h-8 border-4 border-t-[#01336F] border-gray-300 rounded-full animate-spin"></div>
+    <div className="flex justify-start items-start p-4">
+      <div className="flex items-center gap-3">
+        <div className="size-4 border-2 border-t-[#01336F] border-gray-300 rounded-full animate-spin"></div>
+        <span className="text-[#01336F] font-medium">Thinking...</span>
+      </div>
     </div>
   );
 

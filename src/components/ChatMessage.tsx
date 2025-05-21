@@ -105,7 +105,7 @@ export default function ChatMessage({ message, isLoading = false }: MessageProps
 
   const LoadingSpinner = () => (
     <div className="flex justify-start items-center p-4">
-      <div className="w-6 h-6 border-4 border-t-[#01336F] border-gray-300 rounded-full animate-spin"></div>
+      <div className="w-6 h-6 border-4 border-t-[#01336F] border-gray-300 rounded-full animate-spin"><h1></h1></div>
     </div>
   );
 
