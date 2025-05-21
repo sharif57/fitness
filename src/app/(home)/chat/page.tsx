@@ -139,7 +139,8 @@ export default function Home() {
           <div className="flex-1 flex items-center justify-center p-4">
             <div className="text-center">
               <p className="lg:text-[33px] text-xl text-[#33CDF0] font-medium font-[montserrat]">
-                Hello! Ask me about business growth, leadership, or strategy
+               {/* For best results, be specific with your requests. */}
+                For best results, be specific with your requests. Fitness is a journey, not a destination.       
               </p>
             </div>
           </div>
