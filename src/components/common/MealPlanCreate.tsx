@@ -27,16 +27,16 @@ export default function MealPlanCreate() {
   const hasBothSubscription =
     packageName === "workout & nutrition" && subscriptionStatus;
 
-//   const extractDaysFromInput = (input: any) => {
-//     const match = input.match(/(\d+)\s*days?/i);
-//     const days = match ? parseInt(match[1]) : 7; // Default to 7 days
-//     return days > 7 ? 7 : days; // Ensure max days is 7
-//   };
+  //   const extractDaysFromInput = (input: any) => {
+  //     const match = input.match(/(\d+)\s*days?/i);
+  //     const days = match ? parseInt(match[1]) : 7; // Default to 7 days
+  //     return days > 7 ? 7 : days; // Ensure max days is 7
+  //   };
 
-const extractDaysFromInput = (input: any) => {
+  const extractDaysFromInput = (input: any) => {
     const match = input.match(/(\d+)\s*days?/i);
-    return match ? parseInt(match[1]) : null; 
-};
+    return match ? parseInt(match[1]) : null;
+  };
 
   useEffect(() => {});
 
@@ -73,18 +73,14 @@ const extractDaysFromInput = (input: any) => {
       );
 
       const { data: gptResponseText } = await response.json();
+      console.log("gptResponseText", gptResponseText);
 
       const planData = extractJsonData(gptResponseText);
 
-    
-
       console.log("planData", planData);
       localStorage.setItem("mealPlan", gptResponseText);
-      
 
-      
-      router.push('/nutritionplan1/mealPlancreate');
-
+      router.push("/nutritionplan1/mealPlancreate");
 
       if (!planData) {
         throw new Error("Failed to parse GPT response into valid JSON.");
@@ -93,13 +89,10 @@ const extractDaysFromInput = (input: any) => {
       // Proceed with planData (e.g., save to database, update state)
     } catch (err) {
       console.error("Error:", err);
-      toast.error(
-        "Failed to generate your plan please try again.",
-        {
-          position: "top-center",
-          autoClose: 2000,
-        }
-      );
+      toast.error("Failed to generate your plan please try again.", {
+        position: "top-center",
+        autoClose: 2000,
+      });
     } finally {
       setLoading(false);
     }
@@ -157,6 +150,112 @@ const extractDaysFromInput = (input: any) => {
       }
     `;
   };
+
+  // {
+  //         "day": 1,
+  //         "breakfast": {
+  //             "items": [
+  //                 {
+  //                     "name": "Oats",
+  //                     "quantity": "100g",
+  //                     "_id": "6825f1ffad1e7dda05103ea4"
+  //                 },
+  //                 {
+  //                     "name": "Milk",
+  //                     "quantity": "200ml",
+  //                     "_id": "6825f1ffad1e7dda05103ea5"
+  //                 },
+  //                 {
+  //                     "name": "Banana",
+  //                     "quantity": "1 medium",
+  //                     "_id": "6825f1ffad1e7dda05103ea6"
+  //                 }
+  //             ],
+  //             "time": "7:30 AM",
+  //             "_id": "6825f1ffad1e7dda05103ea3"
+  //         },
+  //         "midMorningSnack": {
+  //             "items": [
+  //                 {
+  //                     "name": "Almonds",
+  //                     "quantity": "20 pieces",
+  //                     "_id": "6825f1ffad1e7dda05103ea8"
+  //                 },
+  //                 {
+  //                     "name": "Apple",
+  //                     "quantity": "1 medium",
+  //                     "_id": "6825f1ffad1e7dda05103ea9"
+  //                 }
+  //             ],
+  //             "time": "10:00 AM",
+  //             "_id": "6825f1ffad1e7dda05103ea7"
+  //         },
+  //         "lunch": {
+  //             "items": [
+  //                 {
+  //                     "name": "Grilled Chicken Breast",
+  //                     "quantity": "200g",
+  //                     "_id": "6825f1ffad1e7dda05103eab"
+  //                 },
+  //                 {
+  //                     "name": "Brown Rice",
+  //                     "quantity": "150g",
+  //                     "_id": "6825f1ffad1e7dda05103eac"
+  //                 },
+  //                 {
+  //                     "name": "Steamed Broccoli",
+  //                     "quantity": "100g",
+  //                     "_id": "6825f1ffad1e7dda05103ead"
+  //                 }
+  //             ],
+  //             "time": "1:00 PM",
+  //             "_id": "6825f1ffad1e7dda05103eaa"
+  //         },
+  //         "afternoonSnack": {
+  //             "items": [
+  //                 {
+  //                     "name": "Greek Yogurt",
+  //                     "quantity": "150g",
+  //                     "_id": "6825f1ffad1e7dda05103eaf"
+  //                 },
+  //                 {
+  //                     "name": "Honey",
+  //                     "quantity": "1 tbsp",
+  //                     "_id": "6825f1ffad1e7dda05103eb0"
+  //                 }
+  //             ],
+  //             "time": "4:00 PM",
+  //             "_id": "6825f1ffad1e7dda05103eae"
+  //         },
+  //         "dinner": {
+  //             "items": [
+  //                 {
+  //                     "name": "Baked Salmon",
+  //                     "quantity": "180g",
+  //                     "_id": "6825f1ffad1e7dda05103eb2"
+  //                 },
+  //                 {
+  //                     "name": "Quinoa",
+  //                     "quantity": "100g",
+  //                     "_id": "6825f1ffad1e7dda05103eb3"
+  //                 },
+  //                 {
+  //                     "name": "Mixed Salad",
+  //                     "quantity": "1 bowl",
+  //                     "_id": "6825f1ffad1e7dda05103eb4"
+  //                 }
+  //             ],
+  //             "time": "7:30 PM",
+  //             "_id": "6825f1ffad1e7dda05103eb1"
+  //         },
+  //         "calories": 2800,
+  //         "carb": 350,
+  //         "protein": 180,
+  //         "fiber": 40,
+  //         "fat": 70,
+  //         "isCompleted": false,
+  //         "_id": "6825f1ffad1e7dda05103ea2"
+  //     }
 
   return (
     <div>

@@ -10,9 +10,9 @@ export default function Home() {
   return (
     <div className=" space-y-4 ">
      <Banner></Banner>
-     <WorkoutPlan></WorkoutPlan>
-     <Membership></Membership>
+     {/* <WorkoutPlan></WorkoutPlan> */}
      <HealthyFood></HealthyFood>
+     <Membership></Membership>
      <Appointment></Appointment>
      <TrainerProfile></TrainerProfile>
     </div>

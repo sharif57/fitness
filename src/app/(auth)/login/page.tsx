@@ -1,80 +1,78 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Cookies from 'js-cookie'
-import Image from "next/image"
-import Link from "next/link"
-import {  FaRegEye, FaRegEyeSlash } from "react-icons/fa"
-import { useLoginMutation } from "@/redux/features/authSlice"
-import { toast } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
-import { useRouter } from "next/navigation"
-import { saveTokens } from "@/service/authService"
-import { LockKeyhole, Mail } from "lucide-react"
+import { useState } from "react";
+import Cookies from "js-cookie";
+import Image from "next/image";
+import Link from "next/link";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { useLoginMutation } from "@/redux/features/authSlice";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
+import { saveTokens } from "@/service/authService";
+import { LockKeyhole, Mail } from "lucide-react";
 
 interface UserCredentials {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 
-
-
 export default function Login() {
-  const router = useRouter()
-  const [login] = useLoginMutation()
-  const [showPassword, setShowPassword] = useState(false)
+  const router = useRouter();
+  const [login] = useLoginMutation();
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState<UserCredentials>({
     email: "",
     password: "",
-  })
-
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-  
+    e.preventDefault();
+
     try {
       const response = await login({
         email: formData.email,
         password: formData.password,
-      }).unwrap()
-  
-      console.log(response)
-  
+      }).unwrap();
+
+      console.log(response);
+
       if (response.success) {
         // Save tokens and user data to localStorage and cookies
-        await saveTokens(response.data.accessToken)
-        localStorage.setItem("accessToken", response.data.accessToken)
+        await saveTokens(response?.data?.accessToken);
+        localStorage.setItem("accessToken", response?.data?.accessToken);
+        localStorage.setItem("sessionId", response?.data?.sessionId);
         // Cookies.set("accessToken", response.data.accessToken, {
         //   expires: 1,
         //   path: "/",
         //   sameSite: "Strict",
         //   secure: true,
         // })
-        localStorage.setItem("refreshToken", response.data.refreshToken)
-        localStorage.setItem("user", JSON.stringify(response.data.user))
-  
+        // localStorage.setItem("refreshToken", response.data.refreshToken)
+        localStorage.setItem("user", JSON.stringify(response?.data?.user));
+
         // Show success toast notification
         toast.success("Login Successful!", {
           autoClose: 1500,
-        })
-  
+        });
+
         // Check if the user has a gender field
         if (!response?.data?.user?.gender) {
           // Redirect to the details page if gender is missing
           setTimeout(() => {
-            router.push("/details")
-          }, 1500) // Redirect after 1.5 seconds
+            router.push("/details");
+          }, 1500); // Redirect after 1.5 seconds
         } else {
           // Redirect to the home page if gender is present
           setTimeout(() => {
-            router.push("/")
-          }, 1500) // Redirect after 1.5 seconds
+            router.push("/");
+          }, 1500); // Redirect after 1.5 seconds
         }
       } else {
-        toast.error(response.message || "Invalid credentials!")
+        toast.error(response.message || "Invalid credentials!");
       }
     } catch (error: unknown) {
-      console.error("Login error:", error)
+      console.error("Login error:", error);
       if (
         error &&
         typeof error === "object" &&
@@ -83,19 +81,22 @@ export default function Login() {
         error.data &&
         "message" in error.data
       ) {
-        toast.error((error.data as { message: string }).message || "Something went wrong. Try again!")
+        toast.error(
+          (error.data as { message: string }).message ||
+            "Something went wrong. Try again!"
+        );
       } else {
-        toast.error("Something went wrong. Try again!")
+        toast.error("Something went wrong. Try again!");
       }
     }
-  }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-    })
-  }
+    });
+  };
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-[#F0F2F9] p-4">
@@ -127,11 +128,11 @@ export default function Login() {
               />
             </div>
 
-            <h1 className="text-[#1B365D] text-2xl font-semibold text-center mb-6">Log In</h1>
+            <h1 className="text-[#1B365D] text-2xl font-semibold text-center mb-6">
+              Log In
+            </h1>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-             
-
               {/* Email Input */}
               <div className="flex items-center border border-[#345C8C] py-4 px-3 rounded-full bg-white">
                 <Mail className="h-5 w-5 text-[#345C8C]" />
@@ -148,7 +149,7 @@ export default function Login() {
 
               {/* Password Input */}
               <div className="flex items-center border border-[#345C8C] py-4 px-3 rounded-full bg-white">
-                <LockKeyhole  className="h-5 w-5 text-[#345C8C] font-bold" />
+                <LockKeyhole className="h-5 w-5 text-[#345C8C] font-bold" />
                 <input
                   className="w-full pl-5 outline-none border-none text-[#345C8C] placeholder:text-[#345C8C]"
                   type={showPassword ? "text" : "password"}
@@ -163,15 +164,22 @@ export default function Login() {
                   onClick={() => setShowPassword(!showPassword)}
                   className="text-[#345C8C] focus:outline-none"
                 >
-                  {showPassword ? <FaRegEyeSlash className="h-5 w-5" /> : <FaRegEye className="h-5 w-5" />}
+                  {showPassword ? (
+                    <FaRegEyeSlash className="h-5 w-5" />
+                  ) : (
+                    <FaRegEye className="h-5 w-5" />
+                  )}
                 </button>
               </div>
 
-             <div className=" flex justify-end items-end">
-             <Link href="/forgot" className="  text-right text-sm mt-2 text-[#345C8C] hover:underline">
-                Forgot password?
-              </Link>
-             </div>
+              <div className=" flex justify-end items-end">
+                <Link
+                  href="/forgot"
+                  className="  text-right text-sm mt-2 text-[#345C8C] hover:underline"
+                >
+                  Forgot password?
+                </Link>
+              </div>
 
               <button
                 type="submit"
@@ -183,8 +191,11 @@ export default function Login() {
 
             {/* Login Link */}
             <p className="text-center mt-6 text-sm text-gray-600">
-            Don't have an account?{" "}
-              <Link href="/signup" className="text-[#345C8C] hover:underline font-medium">
+              Don't have an account?{" "}
+              <Link
+                href="/signup"
+                className="text-[#345C8C] hover:underline font-medium"
+              >
                 Sign Up
               </Link>
             </p>
@@ -192,6 +203,5 @@ export default function Login() {
         </div>
       </div>
     </main>
-  )
+  );
 }
-

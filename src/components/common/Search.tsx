@@ -120,8 +120,6 @@ export default function Search() {
   // Create a workout plan based on the searching query firstly check the query and match with exercise name and generate workout plan with valid exercise. If the goal does not specify a duration, use ${days} days.
 
   //     make a workout plan based on the Goal. Check if any days type info given in goal (inputMessage) use that otherwise use 7 days.
-   
-
 
   // Function to create a workout plan message
   const createWorkoutPlanMessage = (): string => {

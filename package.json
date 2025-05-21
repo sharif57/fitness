@@ -11,15 +11,19 @@
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.2",
+    "@radix-ui/react-dropdown-menu": "^2.1.15",
     "@reduxjs/toolkit": "^2.5.1",
     "@types/js-cookie": "^3.0.6",
     "antd": "^5.23.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "cookies": "^0.9.1",
     "crypto-js": "^4.2.0",
     "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
     "lucide-react": "^0.474.0",
-    "next": "15.1.6",
+    "marked": "^15.0.12",
+    "next": "^15.1.6",
     "react": "^19.0.0",
     "react-country-dropdown": "^3.0.0",
     "react-datepicker": "^8.0.0",
@@ -31,7 +35,9 @@
     "react-select-country-list": "^2.2.3",
     "react-share": "^5.2.0",
     "react-toastify": "^11.0.3",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "tailwind-merge": "^3.3.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

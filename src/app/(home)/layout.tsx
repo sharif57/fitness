@@ -1,3 +1,4 @@
+"use client";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import Navbar from "@/components/Navbar";
@@ -8,6 +9,7 @@ import Providers from "@/Providers/Providers";
 import NotifyNotificationChange, {
   NotificationContext,
 } from "@/Providers/NotifyNotificationChange";
+import { usePathname } from "next/navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,6 +26,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+
+  // Check if current route is /chat or /chat/:id
+  const hideLayout = pathname ? /^\/chat(\/[^\/]*)?$/.test(pathname) : false;
   return (
     <html lang="en">
       <body
@@ -31,11 +37,14 @@ export default function RootLayout({
       >
         <Providers>
           <NotifyNotificationChange>
-            <Navbar></Navbar>
-            {children}
+            {/* <Navbar></Navbar>
+            {children} */}
+            {!hideLayout && <Navbar />}
+            <main>{children}</main>
+            {!hideLayout && <Footer />}
           </NotifyNotificationChange>
           <AntdRegistry />
-          <Footer></Footer>
+          {/* <Footer></Footer> */}
           <ToastContainer position="top-center" autoClose={1000} />
         </Providers>
       </body>

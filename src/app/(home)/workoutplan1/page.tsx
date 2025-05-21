@@ -13,7 +13,7 @@ export default function page() {
   return (
     <div className='space-y-8'>
         <WorkoutBanner></WorkoutBanner>
-        <SelectWorkoutPlan></SelectWorkoutPlan>
+        {/* <SelectWorkoutPlan></SelectWorkoutPlan> */}
         <Appointment></Appointment>
     </div>
   )

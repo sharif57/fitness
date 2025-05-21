@@ -1,6 +1,14 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
+  const pathname = usePathname();
+  const hiddenPaths = ["/chat"];
+
+  if (pathname && hiddenPaths.includes(pathname)) {
+    return null;
+  }
   return (
     <div>
       <footer className="bg-[#345C8C]">
@@ -15,7 +23,6 @@ const Footer = () => {
                 If you are going to use a passage of Lorem Ipsum, you need to be
                 sure there isnt anything .
               </p>
-
             </div>
 
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:col-span-2">
@@ -31,7 +38,6 @@ const Footer = () => {
                       Home
                     </Link>
                   </li>
-
 
                   <li>
                     <Link
