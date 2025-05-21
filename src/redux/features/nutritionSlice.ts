@@ -1,15 +1,13 @@
-'use client'
+"use client";
 import baseApi from "../api/baseApi";
 
 export const nutritionApi = baseApi.injectEndpoints({
   overrideExisting: true,
 
   endpoints: (builder) => ({
-
-
     allNutrition: builder.query({
-      query: () => ({
-        url: "/nutrition/all-nutrition",
+      query: (page) => ({
+        url: `/nutrition/all-nutrition?page=${page}`,
         method: "GET",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -30,18 +28,20 @@ export const nutritionApi = baseApi.injectEndpoints({
     }),
 
     nutritionDetails: builder.query({
-        query: (_id) => ({
-          url: `/nutrition/nutriton-details/${_id}`,
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }),
-        providesTags: ["NutritionPlan"], // Marks the fetched data with the "Question" tag
+      query: (_id) => ({
+        url: `/nutrition/nutriton-details/${_id}`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
       }),
-  
-
+      providesTags: ["NutritionPlan"], // Marks the fetched data with the "Question" tag
+    }),
   }),
 });
 
-export const {useAllNutritionQuery , useNutritionDetailsQuery, useCreateNutritionMutation} = nutritionApi;
+export const {
+  useAllNutritionQuery,
+  useNutritionDetailsQuery,
+  useCreateNutritionMutation,
+} = nutritionApi;
