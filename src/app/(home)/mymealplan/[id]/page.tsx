@@ -191,7 +191,7 @@ export default function MealPlanDetails() {
                     className="border-b border-gray-200 hover:bg-gray-50 transition-colors"
                     aria-labelledby={`day-${item.day}`}
                   >
-                    <td className="p-4 border-r border-gray-200 text-gray-600">
+                    <td className="p-4 border-r border-l border-gray-200 text-gray-600">
                       Day {item.day}
                     </td>
                     <td className="p-4 border-r border-gray-200 text-gray-600">
