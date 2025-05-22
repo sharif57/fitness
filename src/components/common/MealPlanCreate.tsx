@@ -375,7 +375,8 @@ export default function MealPlanCreate() {
       toast.success("Meal plan created successfully!");
       setInputMessage(""); // Clear input after success
       // Optionally redirect to the meal plan page
-      router.push("/nutritionplan1/mealPlancreate");
+      // router.push("/nutritionplan1/mealPlancreate");
+      window.location.href = "/nutritionplan1/mealPlancreate";
     } catch (error) {
       console.error("Error creating meal plan:", error);
       toast.error("Failed to create meal plan. Please try again.");
