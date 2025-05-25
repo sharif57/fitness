@@ -347,6 +347,10 @@ export default function Search() {
           )}
         </button>
       </div>
+      <p className="text-gray-400 pt-1 lg:ml-20 ml-8 text-start text-sm">
+        <span className="font-bold">Note:</span>
+        For best results, be specific with your requests.
+      </p>
     </div>
   );
 }

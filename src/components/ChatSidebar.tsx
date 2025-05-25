@@ -47,7 +47,8 @@ export default function ChatSidebar({
       const response = await createSession({}).unwrap();
       console.log(response, "response");
       localStorage.setItem("sessionId", response?.data?.sessionId);
-      window.location.reload();
+      window.location.href = "/chat";
+      // window.location.reload();
     } catch (error) {
       console.error("Error creating session:", error);
     }
