@@ -276,7 +276,7 @@ export default function Search() {
     packageName === "workout & nutrition" && subscriptionStatus;
 
   const handleSendMessage = async () => {
-    router.push("/chat");
+    router.push(`/chat?msg=${inputMessage}`);
   };
 
   return (
@@ -349,7 +349,7 @@ export default function Search() {
       </div>
       <p className="text-gray-400 pt-1 lg:ml-20 ml-8 text-start text-sm">
         <span className="font-bold">Note:</span>
-        For best results, be specific with your requests.
+        be specific With your request.
       </p>
     </div>
   );

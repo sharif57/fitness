@@ -111,7 +111,7 @@
 //   };
 
 //   return (
-//     <div className="flex h-screen bg-[#E9EBF8]  text-black font-[montserrat]">
+//     <div className="flex h-screen bg-[#E9EBF8]  text-black font-[Poppins]">
 //       {/* Sidebar */}
 //       <ChatSidebar
 //         isMobileMenuOpen={isMobileMenuOpen}
@@ -138,7 +138,7 @@
 //         {showWelcomeMessage ? (
 //           <div className="flex-1 flex items-center justify-center p-4">
 //             <div className="text-center">
-//               <p className="lg:text-[33px] text-xl text-[#33CDF0] font-medium font-[montserrat]">
+//               <p className="lg:text-[33px] text-xl text-[#33CDF0] font-medium font-[Poppins]">
 //                 Hello! Ask me about business growth, leadership, or strategy
 //               </p>
 //             </div>
@@ -311,7 +311,7 @@ export default function Home() {
   );
 
   return (
-    <div className="flex h-screen bg-[#E9EBF8] text-black font-[montserrat]">
+    <div className="flex h-screen bg-[#E9EBF8] text-black font-[Poppins]">
       <ChatSidebar
         isMobileMenuOpen={isMobileMenuOpen}
         setIsMobileMenuOpen={setIsMobileMenuOpen}
@@ -334,7 +334,7 @@ export default function Home() {
         {showWelcomeMessage && !isLoading ? (
           <div className="flex-1 flex items-center justify-center p-4">
             <div className="text-center">
-              <p className="lg:text-[33px] text-xl text-[#33CDF0] font-medium font-[montserrat]">
+              <p className="lg:text-[33px] text-xl text-[#33CDF0] font-medium font-[Poppins]">
                 Hello! Ask me about business growth, leadership, or strategy
               </p>
             </div>

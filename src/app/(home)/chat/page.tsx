@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import { ArrowUp } from "lucide-react";
 import {
   useAskQuestionMutation,
@@ -8,6 +8,7 @@ import {
 } from "@/redux/features/sessionSlice";
 import ChatSidebar from "@/components/ChatSidebar";
 import ChatMessage from "@/components/ChatMessage";
+import { useSearchParams } from "next/navigation";
 // import ChatMessage from "@/components/ChatMessage";
 
 interface Message {
@@ -15,7 +16,8 @@ interface Message {
   content: string;
 }
 
-export default function Home() {
+ function Home() {
+  const query = useSearchParams() as any;
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
@@ -23,6 +25,44 @@ export default function Home() {
   const [showWelcomeMessage, setShowWelcomeMessage] = useState(true);
   const [sessionId, setSessionId] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const msg = query.get("msg");
+
+  useEffect(() => {
+    (async () => {
+      if (!(sessionId || msg)) return;
+
+      try {
+        const response = await askQuestion({
+          sessionId: sessionId,
+          message: msg,
+        }).unwrap();
+
+        if (response?.success && response?.data?.reply) {
+          setMessages((prev) => [
+            ...prev,
+            {
+              role: "assistant" as const,
+              content: response.data.reply,
+            },
+          ]);
+        } else {
+          throw new Error("Invalid response format");
+        }
+      } catch (error) {
+        console.error("Error sending message:", error);
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "assistant" as const,
+            content: "Sorry, something went wrong. Please try again.",
+          },
+        ]);
+      } finally {
+        window.history.replaceState({}, "", window.location.pathname);
+      }
+    })();
+  }, [sessionId, msg]);
 
   // Fetch chat history
   const { data, isLoading } = useUserChatsQuery(sessionId);
@@ -119,7 +159,7 @@ export default function Home() {
   // border-t-[#01336F] border-gray-300 rounded-full animate-spin
 
   return (
-    <div className="flex h-screen bg-[#E9EBF8] text-black font-[montserrat]">
+    <div className="flex h-screen bg-[#E9EBF8] text-black font-[Poppins]">
       <ChatSidebar
         isMobileMenuOpen={isMobileMenuOpen}
         setIsMobileMenuOpen={setIsMobileMenuOpen}
@@ -142,9 +182,10 @@ export default function Home() {
         {showWelcomeMessage && !isLoading ? (
           <div className="flex-1 flex items-center justify-center p-4">
             <div className="text-center">
-              <p className="lg:text-[33px] text-xl text-[#33CDF0] font-medium font-[montserrat]">
-               {/* For best results, be specific with your requests. */}
-                For best results, be specific with your requests. Fitness is a journey, not a destination.       
+              <p className="lg:text-[33px] text-xl text-[#33CDF0] font-medium font-[Poppins]">
+                {/* For best results, be specific with your requests. */}
+                For best results, be specific with your requests. Fitness is a
+                journey, not a destination.
               </p>
             </div>
           </div>
@@ -182,7 +223,7 @@ export default function Home() {
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              placeholder=" For best results, be specific with your requests."
+              placeholder="be specific With your request."
               className="w-full bg-white placeholder-[#929494] text-black rounded-2xl lg:py-9 py-4 pl-4 pr-12 focus:outline-none focus:ring-2 focus:ring-[#01336F]"
               disabled={isAsking}
             />
@@ -194,8 +235,19 @@ export default function Home() {
               <ArrowUp className="h-4 w-4 text-white" />
             </button>
           </form>
+          <p className="text-gray-500 pt-1 text-center text-sm">
+            Be Specific With Your Request
+          </p>
         </div>
       </div>
     </div>
+  );
+}
+
+export default function Chat() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Home />
+    </Suspense>
   );
 }
