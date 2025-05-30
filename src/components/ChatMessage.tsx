@@ -120,7 +120,7 @@ export default function ChatMessage({ message, isLoading = false }: MessageProps
   }
 
   return (
-    <div className="mb-6 max-w-4xl">
+    <div className="mb-6 max-w-6xl">
       <div className="p-4 rounded-lg flex items-start space-x-2">
         <Image
           src="/Group (1).svg"

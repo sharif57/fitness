@@ -364,6 +364,7 @@ export default function Navbar() {
   const menuItems = [
     { title: "Home", path: "/" },
     { title: "Workout Plan", path: "/chat" }, // Always show Workout Plan
+    {title: "Exercises", path: "/plan_workout"},
     { title: "Nutrition Plan", path: "/nutritionplan1" },
     { title: "About Us", path: "/about1" },
     { title: "Subscription", path: "/subscription1" },

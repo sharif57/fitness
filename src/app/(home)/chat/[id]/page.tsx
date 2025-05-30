@@ -318,7 +318,7 @@ export default function Home() {
         setIsSearchModalOpen={setIsSearchModalOpen}
       />
 
-      <div className="lg:w-[947px] mx-auto flex flex-col h-full relative">
+      <div className="lg:w-[1100px] mx-auto flex flex-col h-full relative">
         <div
           className="md:hidden absolute top-4 left-4 z-10"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

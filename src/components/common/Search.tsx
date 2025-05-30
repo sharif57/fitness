@@ -281,7 +281,7 @@ export default function Search() {
 
   return (
     <div>
-      <div className="flex items-center  w-5/6 mx-auto bg-white/10 backdrop-blur-lg rounded-lg px- ">
+      <div className="flex items-center  w-5/6 mx-auto bg-white/10 backdrop-blur-lg rounded-lg  ">
         <span className="text-white/70 text-lg pl-4">
           <svg
             width="24"
@@ -326,7 +326,7 @@ export default function Search() {
 
         <button
           onClick={handleSendMessage}
-          className={`bg-[#01336F] text-white lg:px-10 px-4 lg:py-6 py-6 rounded-r-lg flex items-center justify-center ${
+          className={`bg-[#01336F] text-white lg:px-10 px-4 lg:py-6 py-6 rounded-r-lg flex items-center  justify-center ${
             !hasWorkoutSubscription && !hasBothSubscription
               ? "opacity-50 cursor-not-allowed"
               : ""

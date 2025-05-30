@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
-
-'use client'
+"use client";
 import { useAllNutritionQuery } from "@/redux/features/nutritionSlice";
 import Link from "next/link";
 import React from "react";
@@ -19,8 +18,7 @@ type NutritionPlan = {
 
 const HealthyFood: React.FC = () => {
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_KEY; // Ensure this is set in .env.local
-    const { data: userSubscription } = useSubscriptionGetQuery(undefined);
-  
+  const { data: userSubscription } = useSubscriptionGetQuery(undefined);
 
   // Fetch data from API
   const { data, isLoading, error } = useAllNutritionQuery({});
@@ -36,31 +34,27 @@ const HealthyFood: React.FC = () => {
   const nutritionPlans: NutritionPlan[] = data?.data || [];
 
   return (
-
     <>
-     
-    {isLoading ? (
-        <CardSkeleton/>
-      ) : 
-  
-    <div className="px-2 md:px-12 lg:px-20 py-10 mx-auto max-w-[1580px]">
-      {/* Header */}
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="lg:text-[40px] text-[24px] font-semibold">Healthy Food</h2>
-        <Link
-          href="/nutritionplan1"
-          className="text-[#01336F] text-[18px] hover:underline font-medium"
-        >
-          See all
-        </Link>
-      </div>
-
-  
-   
+      {isLoading ? (
+        <CardSkeleton />
+      ) : (
+        <div className="px-2 md:px-12 lg:px-20 py-10 mx-auto max-w-[1580px]">
+          {/* Header */}
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="lg:text-[40px] text-[24px] font-semibold">
+              Healthy Food
+            </h2>
+            <Link
+              href="/nutritionplan1"
+              className="text-[#01336F] text-[18px] hover:underline font-medium"
+            >
+              See all
+            </Link>
+          </div>
 
           {/* Plans Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {nutritionPlans.slice(0,3).map((plan) => {
+            {nutritionPlans.slice(0, 3).map((plan) => {
               // Ensure correct image path
               const imageUrl = plan.image.startsWith("http")
                 ? plan.image
@@ -123,23 +117,44 @@ const HealthyFood: React.FC = () => {
                         Read More
                       </Link>
                     ) : (
-                      <button
-                        className="w-full py-3 text-[18px] font-normal bg-gray-400 text-gray-700 cursor-not-allowed rounded-lg transition text-center flex items-center justify-center"
-                        disabled
+                      <Link
+                        href="/subscription1"
+                        className="w-full py-3 text-[18px] font-normal bg-[#01336F] text-white rounded-lg transition text-center flex items-center justify-center"
                       >
                         Read More
-                      </button>
+                      </Link>
                     )}
                   </div>
                 </div>
               );
             })}
           </div>
-
-    </div>
-}
-</>
+        </div>
+      )}
+    </>
   );
 };
 
 export default HealthyFood;
+
+{
+  /* <div className="pt-4 flex justify-between gap-4">
+                {userSubscription?.data?.package?.name === "nutrition" ||
+                userSubscription?.data?.package?.name ===
+                  "workout & nutrition" ? (
+                  <Link
+                  href={`/plan_workout/${plan._id}`}
+                  className="w-full py-3 text-[18px] font-normal bg-[#01336F] text-white rounded-lg transition text-center flex items-center justify-center"
+                  >
+                  Read More
+                  </Link>
+                ) : (
+                  <Link
+                  href="/subscription1"
+                  className="w-full py-3 text-[18px] font-normal bg-[#01336F] text-white rounded-lg transition text-center flex items-center justify-center"
+                  >
+                  Read More
+                  </Link>
+                )}
+                </div> */
+}
