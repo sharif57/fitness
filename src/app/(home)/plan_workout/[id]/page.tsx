@@ -1,11 +1,6 @@
 "use client";
 import { useAllWorkoutDetailsQuery } from "@/redux/features/planWorkoutSlice";
-import {
-  ArrowLeft,
-  Target,
-
-  BookOpen,
-} from "lucide-react";
+import { ArrowLeft, Target, BookOpen } from "lucide-react";
 import { marked } from "marked";
 import { useParams, useRouter } from "next/navigation";
 import React from "react";
@@ -17,7 +12,7 @@ export default function WorkoutDetailsPage() {
 
   const { data, isLoading, error } = useAllWorkoutDetailsQuery(id);
   const workout = data?.data;
-  const API_BASE_URL = process.env.NEXT_PUBLIC_IMAGE;
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_KEY;
 
   // Configure marked for better HTML output
   React.useEffect(() => {

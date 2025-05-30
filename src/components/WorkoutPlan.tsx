@@ -11,11 +11,11 @@ interface Workout {
 }
 export default function WorkoutPlan() {
   // const { data } = useAllWorkoutPlanQuery(undefined);
-    const { data } = useAllWorkoutPlanQuery({ page: 1, limit: 9 });
-  
+  const { data } = useAllWorkoutPlanQuery({ page: 1, limit: 9 });
+
   console.log(data, "workout data plan");
-    const { data: userSubscription } = useSubscriptionGetQuery(undefined);
-  const API_BASE_URL = process.env.NEXT_PUBLIC_IMAGE;
+  const { data: userSubscription } = useSubscriptionGetQuery(undefined);
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_KEY;
   // console.log(API_BASE_URL, "API_BASE_URL");
 
   return (
@@ -63,25 +63,25 @@ export default function WorkoutPlan() {
                 </div>
                 <p className="text-gray-500 text-[16px]">{plan.title}</p>
               </div>
-             <div className="pt-4 flex justify-between gap-4">
+              <div className="pt-4 flex justify-between gap-4">
                 {userSubscription?.data?.package?.name === "workout" ||
                 userSubscription?.data?.package?.name ===
                   "workout & nutrition" ? (
                   <Link
-                  href={`/plan_workout/${plan._id}`}
-                  className="w-full py-3 text-[18px] font-normal bg-[#01336F] text-white rounded-lg transition text-center flex items-center justify-center"
+                    href={`/plan_workout/${plan._id}`}
+                    className="w-full py-3 text-[18px] font-normal bg-[#01336F] text-white rounded-lg transition text-center flex items-center justify-center"
                   >
-                  Read More
+                    Read More
                   </Link>
                 ) : (
                   <Link
-                  href="/subscription1"
-                  className="w-full py-3 text-[18px] font-normal bg-[#01336F] text-white rounded-lg transition text-center flex items-center justify-center"
+                    href="/subscription1"
+                    className="w-full py-3 text-[18px] font-normal bg-[#01336F] text-white rounded-lg transition text-center flex items-center justify-center"
                   >
-                  Read More
+                    Read More
                   </Link>
                 )}
-                </div>
+              </div>
             </div>
           ))}
         </div>
